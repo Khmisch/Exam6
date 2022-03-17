@@ -10,7 +10,6 @@ import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import com.example.exam6.R
 import com.example.exam6.adapter.PhysicalAdapter
-import com.example.exam6.model.Card
 import com.example.exam6.model.CardElement
 import com.example.pinterest.network.RetrofitHttp
 import retrofit2.Call
@@ -31,6 +30,8 @@ class AddCardActivity : AppCompatActivity() {
     lateinit var et_date_month: EditText
     lateinit var et_fullname: EditText
     lateinit var bt_add_card: Button
+    lateinit var adapter: PhysicalAdapter
+    var posters = ArrayList<CardElement>()
     private val nonDigits = Regex("[^\\d]")
 
 
@@ -59,7 +60,8 @@ class AddCardActivity : AppCompatActivity() {
         }
 
 
-        val card = CardElement(et_fullname.text.toString(), et_date_month.text.toString() ,et_card_number.text.toString() ,et_cvv.text.toString() ,et_date_year.text.toString(), "88")
+        val card = CardElement(et_fullname.text.toString(), et_date_month.text.toString() ,
+            et_card_number.text.toString() ,et_cvv.text.toString() ,et_date_year.text.toString(), "88")
 
         bt_add_card.setOnClickListener {
             if (et_fullname.text.toString().isEmpty()

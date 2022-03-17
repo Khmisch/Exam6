@@ -15,6 +15,12 @@ import com.example.exam6.model.CardElement
 class PhysicalAdapter (var context: PhysicalFragment,  private var items :ArrayList<CardElement>) : RecyclerView.Adapter<RecyclerView.ViewHolder>(){
 
 
+    @SuppressLint("NotifyDataSetChanged")
+    fun addPhotos(photoList: ArrayList<CardElement>) {
+        this.items.addAll(photoList)
+        notifyDataSetChanged()
+    }
+
     override fun getItemCount(): Int {
         return items.size
     }

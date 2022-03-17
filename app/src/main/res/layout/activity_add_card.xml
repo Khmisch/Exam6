@@ -1,0 +1,409 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/appbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:elevation="0dp"
+            android:background="@color/white">
+
+            <androidx.appcompat.widget.Toolbar
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                android:elevation="0dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:id="@+id/iv_close"
+                        android:layout_width="17dp"
+                        android:layout_height="17dp"
+                        android:layout_marginEnd="10dp"
+                        android:src="@drawable/close"
+                        app:tint="@color/text_numbers_color" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
+                        android:text="@string/add_new_card"
+                        android:textSize="25sp"
+                        android:textColor="@color/text_cards_color"
+                        android:textStyle="bold"/>
+
+                    <ImageView
+                        android:id="@+id/iv_capture"
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:layout_marginEnd="15dp"
+                        android:src="@drawable/capture"
+                        app:tint="@color/physical_background" />
+
+                </LinearLayout>
+            </androidx.appcompat.widget.Toolbar>
+
+        </com.google.android.material.appbar.AppBarLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
+
+
+            <androidx.core.widget.NestedScrollView
+                android:id="@+id/nestedScrollView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/white"
+                app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:padding="15dp"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="200dp"
+                        android:orientation="vertical">
+
+                        <FrameLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent">
+                            <com.google.android.material.imageview.ShapeableImageView
+                                android:id="@+id/iv_visa"
+                                android:layout_width="match_parent"
+                                android:layout_height="200dp"
+                                android:adjustViewBounds="true"
+                                android:scaleType="fitCenter"
+                                android:background="@color/light_purple"
+                                android:tint="@color/light_purple_visa"
+                                app:shapeAppearanceOverlay="@style/rounded" />
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="10dp">
+
+                                <com.google.android.material.imageview.ShapeableImageView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="35dp"
+                                    android:layout_gravity="top"
+                                    android:layout_marginLeft="15dp"
+                                    android:adjustViewBounds="true"
+                                    android:scaleType="fitCenter"
+                                    android:src="@drawable/visa_logo"
+                                    android:tint="@color/white"
+                                    app:shapeAppearanceOverlay="@style/rounded" />
+
+                                <TextView
+                                    android:layout_width="0dp"
+                                    android:layout_weight="1"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginRight="10dp"
+                                    android:textColor="@color/white"
+                                    android:textSize="15sp"/>
+                                <ImageView
+                                    android:id="@+id/iv_more"
+                                    android:layout_width="22dp"
+                                    android:layout_height="22dp"
+                                    android:layout_marginTop="5dp"
+                                    android:layout_marginEnd="25dp"
+                                    android:src="@drawable/option"
+                                    app:tint="@color/white" />
+
+                            </LinearLayout>
+
+
+                            <com.google.android.material.imageview.ShapeableImageView
+                                android:id="@+id/iv_visa_logo"
+                                android:layout_width="match_parent"
+                                android:layout_height="200dp"
+                                android:layout_marginTop="54dp"
+                                android:adjustViewBounds="true"
+                                android:scaleType="fitCenter"
+                                android:src="@drawable/visa_logo"
+                                android:tint="@color/light_purple_visa"
+                                app:shapeAppearanceOverlay="@style/rounded" />
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_marginRight="25dp"
+                                android:layout_marginLeft="25dp"
+                                android:gravity="center">
+
+                                <TextView
+                                    android:id="@+id/tv_card_number"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:textColor="@color/white"
+                                    android:textSize="25sp"/>
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_marginBottom="50dp"
+                                android:layout_marginLeft="25dp"
+                                android:layout_marginRight="25dp"
+                                android:gravity="bottom">
+
+                                <TextView
+                                    android:layout_width="0dp"
+                                    android:layout_weight="1"
+                                    android:layout_height="wrap_content"
+                                    android:text="CARD HOLDER"
+                                    android:textColor="#A1FFFFFF"
+                                    android:textSize="15sp"/>
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="EXPIRES"
+                                    android:textColor="#A1FFFFFF"
+                                    android:textSize="15sp"/>
+                            </LinearLayout>
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_marginLeft="25dp"
+                                android:layout_marginBottom="15dp"
+                                android:layout_marginRight="25dp"
+                                android:gravity="bottom">
+
+                                <TextView
+                                    android:id="@+id/tv_fullname"
+                                    android:layout_width="0dp"
+                                    android:layout_weight="1"
+                                    android:layout_height="wrap_content"
+                                    android:textColor="@color/white"
+                                    android:textStyle="bold"
+                                    android:textSize="18sp"/>
+                                <TextView
+                                    android:id="@+id/tv_expire_date_month"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:textColor="@color/white"
+                                    android:textStyle="bold"
+                                    android:textSize="18sp"/>
+                                <TextView
+                                    android:id="@+id/tv_slash"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="/"
+                                    android:visibility="gone"
+                                    android:textColor="@color/white"
+                                    android:textStyle="bold"
+                                    android:textSize="18sp"/>
+                                <TextView
+                                    android:id="@+id/tv_expire_date_year"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:textColor="@color/white"
+                                    android:textStyle="bold"
+                                    android:textSize="18sp"/>
+                            </LinearLayout>
+                        </FrameLayout>
+                    </LinearLayout>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="15sp"
+                        android:text="Your Card Number"
+                        android:textSize="17sp"
+                        android:textColor="@color/text_text_color"/>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical"
+                        android:padding="5dp"
+                        android:background="@drawable/edittext_background">
+
+                        <FrameLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="20dp">
+
+                            <LinearLayout
+                                android:layout_width="25dp"
+                                android:layout_height="25dp"
+                                android:background="@drawable/circle_purple_dark"/>
+
+                            <LinearLayout
+                                android:layout_width="25dp"
+                                android:layout_height="25dp"
+                                android:layout_marginLeft="13sp"
+                                android:background="@drawable/circle_purple"/>
+
+                        </FrameLayout>
+
+                        <EditText
+                            android:id="@+id/et_card_number"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:padding="10dp"
+                            android:layout_marginLeft="15sp"
+                            android:hint="0000 0000 0000 0000"
+                            android:textColorHint="#C4CEDD"
+                            android:textColor="@color/text_numbers_color"/>
+
+                    </LinearLayout>
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_weight="1.5"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="15sp"
+                            android:text="Expiration Date"
+                            android:textSize="17sp"
+                            android:textColor="@color/text_text_color"/>
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="15sp"
+                            android:text="CVV"
+                            android:textSize="17sp"
+                            android:textColor="@color/text_text_color"/>
+
+                    </LinearLayout>
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <EditText
+                            android:id="@+id/et_date_month"
+                            android:layout_width="80dp"
+                            android:layout_height="wrap_content"
+                            android:padding="10dp"
+                            android:hint="0"
+                            android:gravity="center"
+                            android:textColorHint="#C4CEDD"
+                            android:background="@drawable/edittext_background"
+                            android:textColor="@color/text_numbers_color"/>
+
+                        <EditText
+                            android:id="@+id/et_date_year"
+                            android:layout_width="80dp"
+                            android:layout_height="wrap_content"
+                            android:padding="10dp"
+                            android:hint="0"
+                            android:layout_marginLeft="20dp"
+                            android:gravity="center"
+                            android:textColorHint="#C4CEDD"
+                            android:background="@drawable/edittext_background"
+                            android:textColor="@color/text_numbers_color"/>
+
+                        <EditText
+                            android:id="@+id/et_cvv"
+                            android:layout_width="100dp"
+                            android:layout_height="wrap_content"
+                            android:padding="10dp"
+                            android:hint="000"
+                            android:layout_marginLeft="20dp"
+                            android:gravity="center"
+                            android:textColorHint="#C4CEDD"
+                            android:background="@drawable/edittext_background"
+                            android:textColor="@color/text_numbers_color"/>
+
+                    </LinearLayout>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="15sp"
+                        android:text="Card Holder Name"
+                        android:textSize="17sp"
+                        android:textColor="@color/text_text_color"/>
+
+                    <EditText
+                        android:id="@+id/et_fullname"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingBottom="15dp"
+                        android:paddingTop="15dp"
+                        android:hint="Matt LeBlanc"
+                        android:paddingStart="20dp"
+                        android:paddingLeft="10dp"
+                        android:singleLine="true"
+                        android:textColorHint="#C4CEDD"
+                        android:background="@drawable/edittext_background"
+                        android:textColor="@color/text_numbers_color"/>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical"
+                        android:layout_marginTop="15dp"
+                        android:padding="5dp"
+                        android:background="@drawable/edittext_background">
+
+                        <ImageView
+                            android:id="@+id/iv_face_id"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:layout_marginStart="15sp"
+                            android:src="@drawable/ic_face_id"
+                            app:tint="@color/physical_background" />
+
+                        <TextView
+                            android:id="@+id/tv_add_face_id"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:padding="10dp"
+                            android:textStyle="bold"
+                            android:textSize="17sp"
+                            android:text="Add Face ID"
+                            android:layout_marginLeft="10dp"
+                            android:textColor="@color/text_numbers_color"/>
+
+                    </LinearLayout>
+
+                    <Button
+                        android:id="@+id/bt_add_card"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="25dp"
+                        android:text="Add Card"
+                        android:textSize="16sp"
+                        android:backgroundTint="@null"
+                        android:background="@drawable/button_background"/>
+                </LinearLayout>
+            </androidx.core.widget.NestedScrollView>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="200dp"
+            android:layout_height="3dp"
+            android:layout_gravity="center"
+            android:background="@color/text_cards_color"
+            android:layout_marginBottom="5dp"/>
+    </LinearLayout>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Exam6</string>
+    <string name="cards">Cards</string>
+    <string name="add_new_card">Add New Card</string>
+</resources>

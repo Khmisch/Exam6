@@ -1,5 +1,6 @@
 package com.example.exam6.activity
 
+import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
 import android.text.InputFilter
@@ -10,8 +11,9 @@ import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import com.example.exam6.R
 import com.example.exam6.adapter.PhysicalAdapter
-import com.example.exam6.model.CardElement
+import com.example.exam6.model.Cards
 import com.example.pinterest.network.RetrofitHttp
+import com.google.gson.Gson
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -31,7 +33,7 @@ class AddCardActivity : AppCompatActivity() {
     lateinit var et_fullname: EditText
     lateinit var bt_add_card: Button
     lateinit var adapter: PhysicalAdapter
-    var posters = ArrayList<CardElement>()
+    var posters = ArrayList<Cards>()
     private val nonDigits = Regex("[^\\d]")
 
 
@@ -60,8 +62,8 @@ class AddCardActivity : AppCompatActivity() {
         }
 
 
-        val card = CardElement(et_fullname.text.toString(), et_date_month.text.toString() ,
-            et_card_number.text.toString() ,et_cvv.text.toString() ,et_date_year.text.toString(), "88")
+        val card = Cards(1, et_cvv.text.toString() ,et_fullname.text.toString(), et_date_month.text.toString(),
+            et_date_year.text.toString(),et_card_number.text.toString(),true)
 
         bt_add_card.setOnClickListener {
             if (et_fullname.text.toString().isEmpty()
@@ -73,28 +75,11 @@ class AddCardActivity : AppCompatActivity() {
                 Toast.makeText(this, "Fill all the blanks", Toast.LENGTH_LONG).show();
             }
             else{
-                apiPostCard(card)
+                setResult(RESULT_OK, Intent().putExtra("newCard", Gson().toJson(card)))
                 finish()
             }
         }
         textWatcher()
-    }
-
-    private fun apiPostCard(card : CardElement) {
-        RetrofitHttp.photoService.addCard(card)
-            .enqueue(object : Callback<CardElement> {
-                override fun onResponse(call: Call<CardElement>, response: Response<CardElement>) {
-                    var body = response.body()
-                    if (body != null){
-                        Log.d("@@@onSuccessPost",response.body()!!.toString() )
-                    }
-                }
-
-                override fun onFailure(call: Call<CardElement>, t: Throwable) {
-                    Log.e("@@@onFailurePost", t.message.toString())
-                    Log.e("@@@onFailurePost", t.toString())
-                }
-            })
     }
 
     private fun textWatcher() {

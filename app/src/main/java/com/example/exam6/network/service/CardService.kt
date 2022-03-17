@@ -1,8 +1,6 @@
 package com.example.pinterest.network.service
 
-import com.example.exam6.model.Card
-import com.example.exam6.model.CardElement
-import com.example.exam6.model.CardResp
+import com.example.exam6.model.Cards
 import retrofit2.Call
 import retrofit2.http.*
 
@@ -10,8 +8,8 @@ import retrofit2.http.*
 interface CardService {
 
     @GET("Card")
-    fun getCards(): Call<ArrayList<CardElement>>
+    fun getCards(): Call<ArrayList<Cards>>
 
     @POST("Card")
-    fun addCard(@Body card: CardElement): Call<CardElement>
+    fun addCard(@Body card: Cards): Call<Cards>
 }

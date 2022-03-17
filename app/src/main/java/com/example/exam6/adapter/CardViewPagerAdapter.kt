@@ -5,7 +5,6 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.Lifecycle
 import androidx.viewpager2.adapter.FragmentStateAdapter
-import com.example.exam6.fragment.HomeFragment
 import com.example.exam6.fragment.PhysicalFragment
 
 class CardViewPagerAdapter (

@@ -9,20 +9,22 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.exam6.R
 import com.example.exam6.fragment.PhysicalFragment
-import com.example.exam6.model.Card
-import com.example.exam6.model.CardElement
+import com.example.exam6.model.Cards
 
-class PhysicalAdapter (var context: PhysicalFragment,  private var items :ArrayList<CardElement>) : RecyclerView.Adapter<RecyclerView.ViewHolder>(){
+class PhysicalAdapter (var context: Context) : RecyclerView.Adapter<RecyclerView.ViewHolder>(){
 
+
+    private var cardList = ArrayList<Cards>()
 
     @SuppressLint("NotifyDataSetChanged")
-    fun addPhotos(photoList: ArrayList<CardElement>) {
-        this.items.addAll(photoList)
+    fun addCards(cards: ArrayList<Cards>) {
+        cardList.clear()
+        cardList.addAll(cards)
         notifyDataSetChanged()
     }
 
     override fun getItemCount(): Int {
-        return items.size
+        return cardList.size
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
@@ -31,7 +33,7 @@ class PhysicalAdapter (var context: PhysicalFragment,  private var items :ArrayL
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
-        val cardItem = items[position]
+        val cardItem = cardList[position]
         if (holder is PinsViewHolder) {
             holder.tv_card_number.text = cardItem.card_number
             holder.tv_fullname.text = cardItem.full_name

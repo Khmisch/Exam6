@@ -2,14 +2,13 @@ package com.example.exam6.manager
 
 import android.content.Context
 import androidx.room.*
-import com.example.exam6.model.CardElement
 import com.example.exam6.model.Cards
 import com.example.pinterest.database.Dao
 
 @Database(entities = [Cards::class], version = 1)
 abstract class RoomManager : RoomDatabase() {
 
-    abstract fun pinDao(): Dao
+    abstract fun cardDao(): Dao
 
     companion object {
 

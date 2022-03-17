@@ -5,7 +5,7 @@ import android.os.Bundle
 import android.widget.FrameLayout
 import androidx.fragment.app.Fragment
 import com.example.exam6.R
-import com.example.exam6.fragment.CardsFragment
+import com.example.exam6.fragment.PhysicalFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class MainActivity : AppCompatActivity() {
@@ -16,11 +16,11 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val homeFragment = CardsFragment()
-        val searchFragment = CardsFragment()
-        val messagesFragment = CardsFragment()
-        val profileFragment = CardsFragment()
-        val cardsFragment = CardsFragment()
+        val homeFragment = PhysicalFragment()
+        val searchFragment = PhysicalFragment()
+        val messagesFragment = PhysicalFragment()
+        val profileFragment = PhysicalFragment()
+        val cardsFragment = PhysicalFragment()
         bottomNavigationView = findViewById(R.id.bottomNavigationView)
         fl_Fragment = findViewById(R.id.fl_Fragment)
 

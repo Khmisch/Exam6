@@ -1,4 +1,4 @@
-package com.example.pinterest.network.service
+package com.example.exam6.network.service
 
 import com.example.exam6.model.Cards
 import retrofit2.Call
@@ -12,4 +12,7 @@ interface CardService {
 
     @POST("Card")
     fun addCard(@Body card: Cards): Call<Cards>
+
+    @DELETE("Card/{id}")
+    fun deleteCard(@Path("id") id: Int): Call<Cards>
 }

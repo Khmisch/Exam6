@@ -1,6 +1,8 @@
 package com.example.exam6.activity
 
+import android.app.Activity
 import android.content.Intent
+import android.net.ConnectivityManager
 import android.os.Bundle
 import android.text.Editable
 import android.text.InputFilter
@@ -11,6 +13,7 @@ import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import com.example.exam6.R
 import com.example.exam6.adapter.PhysicalAdapter
+import com.example.exam6.database.CardRepository
 import com.example.exam6.model.Cards
 import com.example.pinterest.network.RetrofitHttp
 import com.google.gson.Gson
@@ -34,6 +37,7 @@ class AddCardActivity : AppCompatActivity() {
     lateinit var bt_add_card: Button
     lateinit var adapter: PhysicalAdapter
     var posters = ArrayList<Cards>()
+    private lateinit var cardRepository: CardRepository
     private val nonDigits = Regex("[^\\d]")
 
 
@@ -41,6 +45,7 @@ class AddCardActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_add_card)
 
+        cardRepository = CardRepository(application)
         initViews()
     }
 
@@ -62,8 +67,7 @@ class AddCardActivity : AppCompatActivity() {
         }
 
 
-        val card = Cards(1, et_cvv.text.toString() ,et_fullname.text.toString(), et_date_month.text.toString(),
-            et_date_year.text.toString(),et_card_number.text.toString(),true)
+        textWatcher()
 
         bt_add_card.setOnClickListener {
             if (et_fullname.text.toString().isEmpty()
@@ -75,11 +79,50 @@ class AddCardActivity : AppCompatActivity() {
                 Toast.makeText(this, "Fill all the blanks", Toast.LENGTH_LONG).show();
             }
             else{
-                setResult(RESULT_OK, Intent().putExtra("newCard", Gson().toJson(card)))
-                finish()
+                 if (isInternetAvailable()){
+                     val card = Cards(cvv = et_cvv.text.toString() , full_name = et_fullname.text.toString(), exp_date_month = et_date_month.text.toString(),
+                         exp_date_year = et_date_year.text.toString(), card_number = et_card_number.text.toString(),true)
+
+                     saveCardToServer(card)
+                } else {
+                     val card = Cards(cvv = et_cvv.text.toString() , full_name = et_fullname.text.toString(), exp_date_month = et_date_month.text.toString(),
+                         exp_date_year = et_date_year.text.toString(), card_number = et_card_number.text.toString(),false)
+                     saveCardToLocal(card)}
             }
         }
-        textWatcher()
+    }
+
+
+    private fun backToFinish(){
+        val intent = Intent()
+        setResult(Activity.RESULT_OK, intent)
+        finish()
+    }
+
+    private fun saveCardToServer(card: Cards) {
+        RetrofitHttp.photoService.addCard(card).enqueue(object : Callback<Cards> {
+            override fun onResponse(call: Call<Cards>, response: Response<Cards>) {
+                saveCardToLocal(card)
+                Log.d("Post", response.body().toString())
+            }
+
+            override fun onFailure(call: Call<Cards>, t: Throwable) {
+                Log.d("Post", t.localizedMessage!!)
+            }
+
+        })
+    }
+
+    private fun isInternetAvailable(): Boolean {
+        val manager = getSystemService(CONNECTIVITY_SERVICE) as ConnectivityManager
+        val infoMobile = manager.getNetworkInfo(ConnectivityManager.TYPE_MOBILE)
+        val infoWifi = manager.getNetworkInfo(ConnectivityManager.TYPE_WIFI)
+        return infoMobile!!.isConnected || infoWifi!!.isConnected
+    }
+
+    private fun saveCardToLocal(card: Cards) {
+        cardRepository.cardDao!!.saveCard(card)
+        backToFinish()
     }
 
     private fun textWatcher() {

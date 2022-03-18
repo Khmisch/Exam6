@@ -1,6 +1,6 @@
 package com.example.pinterest.network
 
-import com.example.pinterest.network.service.CardService
+import com.example.exam6.network.service.CardService
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
